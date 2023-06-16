@@ -1,13 +1,14 @@
 import { useState } from "react";
 
-function Timer({ onTimeout = () => {} }) {
-
+function Timer({ onTimeout = () => {}, onStart}) {
 
     let [time, setTime] = useState(30);
     let [running, setRunning] = useState(false);
 
 	const startTimer = () => {
 		setRunning(true);
+		setTime(30);
+		onStart();
 		const invervalId = setInterval(() => {
 			if (time === 0) {
 				setRunning(false);
@@ -15,14 +16,13 @@ function Timer({ onTimeout = () => {} }) {
 				onTimeout();
 			}
 			setTime(time--);
-		}, 100);
+		}, 1000);
 	}
 
 	return (
 		<div>
 			<div>{time}</div>
-			<div>{running ? 'running' : 'stopped'}</div>
-			<button onClick={startTimer}>Start</button>
+			{!running && <button onClick={startTimer}>Start</button>}
 		</div>
 	);
 }

@@ -1,32 +1,31 @@
 const PITCH = 1;
 const RATE = 1;
 
+class VoiceBox {    
+    constructor() {
+        this.voices = [];
+        speechSynthesis.addEventListener('voiceschanged', this.populateVoices.bind(this));
+    }
 
-export default function speak(word) {
-    let voices = [];
-
-    if ('speechSynthesis' in window) {
-
-        voices = speechSynthesis.getVoices();
+    populateVoices() {
+        console.log('Populate');
+        this.voices = speechSynthesis.getVoices();
+    }
     
-        voices = voices.filter(voice => {
-            console.log('test');
+    speak(word) {
+        let voices = this.voices.filter(voice => {
             return voice.lang === 'es-MX';
         });
 
         let msg = new SpeechSynthesisUtterance(word);
-        const voice = voices[0];
-
-        console.log(voice);
-
-
-        msg.voice = voice;
+        msg.voice = voices[0];
         msg.pitch = PITCH;
         msg.rate = RATE;
 
-        window.speechSynthesis.speak(msg);;
-    
-    
-           
+        window.speechSynthesis.speak(msg); 
     }
 }
+
+const voiceBox = new VoiceBox();
+
+export default voiceBox;
