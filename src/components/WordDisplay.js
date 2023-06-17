@@ -1,5 +1,7 @@
+import '../styles/WordDisplay.css';
+
 export default function WordDisplay({ word }) {
     return (
-        <div>{word}</div>
+        <div className="word">{word}</div>
     )
 }

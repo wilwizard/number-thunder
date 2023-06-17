@@ -1,0 +1,12 @@
+.button {
+    padding: 40px;
+    border: 1px black solid;
+    width: 100px;
+    margin: 200px auto;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button.button-primary:hover {
+    background-color: aquamarine;
+}

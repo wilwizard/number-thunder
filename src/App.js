@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 import './App.css';
+import Header from "./components/Header";
 import Timer from './components/Timer';
 import Scoreboard from './components/Scoreboard'
 import GuessInput from './components/GuessInput';
 import WordDisplay from "./components/WordDisplay";
 import voiceBox from "./utils/speak";
+import StartButton from './components/StartButton';
 
 import writtenNumber from "written-number";
 
@@ -59,13 +61,19 @@ function App() {
 
   return (
     <div className="App">
-      <Timer onStart={startGame} onTimeout={endGame}/>
-      <Scoreboard score={score}/>
-      {playing && <div>
+      <Header title="Number Thunder"/>
+      
+      { playing ? 
+         <div>
+          <div className="row">
+            <Scoreboard score={score}/>
+            <Timer trigger={playing} onTimeout={endGame}/>
+          </div>
           <WordDisplay word={currentWord}/>
           <GuessInput onGuess={makeGuess}/>
-        </div>
-      }
+        </div> :
+        <StartButton onClick={startGame}/>
+    }
     </div>
   );
 }

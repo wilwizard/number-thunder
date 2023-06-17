@@ -1,0 +1,7 @@
+.digits {
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 310px;
+    
+}

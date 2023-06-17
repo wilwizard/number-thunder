@@ -1,23 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Timer({ onTimeout = () => {}, onStart}) {
+function Timer({ onTimeout = () => {}, onStart = () => {}, trigger}) {
 
     let [time, setTime] = useState(30);
     let [running, setRunning] = useState(false);
 
+	const onStartFunction = onStart;
+
 	const startTimer = () => {
+		if (running) return;
+
 		setRunning(true);
 		setTime(30);
-		onStart();
+		onStartFunction();
 		const invervalId = setInterval(() => {
 			if (time === 0) {
 				setRunning(false);
 				clearInterval(invervalId);
 				onTimeout();
 			}
-			setTime(time--);
+			setTime(time); // should be time--
 		}, 1000);
 	}
+
+	useEffect(() => {
+		startTimer();
+	}, [trigger]);
 
 	return (
 		<div>
