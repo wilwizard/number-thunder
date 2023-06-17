@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.d5ec39c1.css",
-    "main.js": "/react-gh-pages/static/js/main.46e01336.js",
-    "static/js/787.05cba289.chunk.js": "/react-gh-pages/static/js/787.05cba289.chunk.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.d5ec39c1.css.map": "/react-gh-pages/static/css/main.d5ec39c1.css.map",
-    "main.46e01336.js.map": "/react-gh-pages/static/js/main.46e01336.js.map",
-    "787.05cba289.chunk.js.map": "/react-gh-pages/static/js/787.05cba289.chunk.js.map"
+    "main.css": "/number-thunder/static/css/main.d5ec39c1.css",
+    "main.js": "/number-thunder/static/js/main.80ff0896.js",
+    "static/js/787.05cba289.chunk.js": "/number-thunder/static/js/787.05cba289.chunk.js",
+    "index.html": "/number-thunder/index.html",
+    "main.d5ec39c1.css.map": "/number-thunder/static/css/main.d5ec39c1.css.map",
+    "main.80ff0896.js.map": "/number-thunder/static/js/main.80ff0896.js.map",
+    "787.05cba289.chunk.js.map": "/number-thunder/static/js/787.05cba289.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d5ec39c1.css",
-    "static/js/main.46e01336.js"
+    "static/js/main.80ff0896.js"
   ]
 }
