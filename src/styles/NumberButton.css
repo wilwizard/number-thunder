@@ -11,4 +11,8 @@ button.number {
     height: 100px;
 }
 
+.number:active {
+    background-color: #aaa;
+}
+
 

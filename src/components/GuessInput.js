@@ -10,11 +10,11 @@ export default function GuessInput({onGuess}) {
 
     const checkKeyPress = event => {
         if(event.key.match(/[0-9]/)) {
-            setInputValue(inputValue + event.key);
+            triggerDigit(event.key);
         }
 
         if(event.key === "Backspace") {
-            setInputValue(inputValue.slice(0, inputValue.length - 1));
+            triggerBackspace();
         }
 
         if(event.key === "Enter") {
@@ -24,6 +24,10 @@ export default function GuessInput({onGuess}) {
 
     const triggerDigit = (digit) => {
         setInputValue(inputValue + digit);
+    }
+
+    const triggerBackspace = () => {
+        setInputValue(inputValue.slice(0, inputValue.length - 1));
     }
 
     useEffect(() => {
@@ -41,7 +45,7 @@ export default function GuessInput({onGuess}) {
     return (
         <div className="center">
             <input className="center input-display" value={inputValue} readOnly={true}/>
-            <NumberPad onButtonPress={triggerDigit} submitGuess={submitGuess}/>
+            <NumberPad onBackspacePress={triggerBackspace} onDigitPress={triggerDigit} submitGuess={submitGuess}/>
         </div>
     );
 }
