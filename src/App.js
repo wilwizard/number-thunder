@@ -13,7 +13,6 @@ import writtenNumber from "written-number";
 
 writtenNumber.defaults.lang = 'es';
 
-
 const MAX_MAG = 4;
 const MAX_SIG_FIGS = 3;
 
@@ -54,6 +53,9 @@ function App() {
   const makeGuess = (guess) => {
     if (guess == currentNumber) {
       setScore(score + 1);
+      voiceBox.speak("Correcto");  
+    } else {
+      voiceBox.speak("Incorrecto");  
     }
     generateNumber();
 
@@ -69,8 +71,12 @@ function App() {
             <Scoreboard score={score}/>
             <Timer trigger={playing} onTimeout={endGame}/>
           </div>
-          <WordDisplay word={currentWord}/>
-          <GuessInput onGuess={makeGuess}/>
+          <div className="row">
+            <WordDisplay word={currentWord}/>
+          </div>
+          <div className="row">
+            <GuessInput onGuess={makeGuess}/>
+          </div>
         </div> :
         <StartButton onClick={startGame}/>
     }

@@ -1,5 +1,5 @@
 .word {
     text-align: center;
-    margin-bottom: 40px;
-    margin-top: 40px;
+    margin: 40px auto;
+    font-size: 40px;
 }

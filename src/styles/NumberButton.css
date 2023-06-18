@@ -6,4 +6,9 @@
     text-align: center;
 }
 
+button.number {
+    padding-top: 10px;
+    height: 100px;
+}
+
 

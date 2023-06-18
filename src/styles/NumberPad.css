@@ -1,7 +1,15 @@
 .digits {
-
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     width: 310px;
     
+}
+
+.enter-button {
+    order: 3;
+}
+
+.end {
+    order: 2;
 }

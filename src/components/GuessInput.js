@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import NumberPad from '../components/NumberPad';
 
+import '../styles/GuessInput.css';
+
 export default function GuessInput({onGuess}) {
 
     let [inputValue, setInputValue] = useState('');
@@ -37,12 +39,9 @@ export default function GuessInput({onGuess}) {
     }
    
     return (
-        <div className="row">
-            <div className="center">
-                <input value={inputValue} readOnly={true}/>
-                <button onClick={submitGuess}>Enter</button>
-            </div>
-            <NumberPad onButtonPress={triggerDigit}/>
+        <div className="center">
+            <input className="center input-display" value={inputValue} readOnly={true}/>
+            <NumberPad onButtonPress={triggerDigit} submitGuess={submitGuess}/>
         </div>
     );
 }

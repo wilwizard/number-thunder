@@ -8,7 +8,6 @@ class VoiceBox {
     }
 
     populateVoices() {
-        console.log('Populate');
         this.voices = speechSynthesis.getVoices();
     }
     

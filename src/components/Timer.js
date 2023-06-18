@@ -1,36 +1,54 @@
 import { useState, useEffect } from "react";
 
-function Timer({ onTimeout = () => {}, onStart = () => {}, trigger}) {
+function Timer({ onTimeout = () => {}, trigger}) {
 
-    let [time, setTime] = useState(30);
-    let [running, setRunning] = useState(false);
+    const [time, setTime] = useState();
+    const [running, setRunning] = useState(false);
 
-	const onStartFunction = onStart;
+	const parseMin = (time) => {
+		const min = Math.floor(time / 60);
+		return min.toString();
+	}
+
+	const parseSec = (time) => {
+		let sec = time % 60;
+		if(sec.toString().length === 1) {
+			return `0${sec}`;
+		} else {
+			return sec.toString();
+		}
+	}
 
 	const startTimer = () => {
-		if (running) return;
-
+		setTime(120);
 		setRunning(true);
-		setTime(30);
-		onStartFunction();
-		const invervalId = setInterval(() => {
-			if (time === 0) {
-				setRunning(false);
-				clearInterval(invervalId);
-				onTimeout();
-			}
-			setTime(time); // should be time--
-		}, 1000);
+	}
+
+	const endTimer = () => {
+		setTime();
+		setRunning(false);
 	}
 
 	useEffect(() => {
 		startTimer();
 	}, [trigger]);
 
+	useEffect(() => {
+		if (time === 0) {
+			endTimer();
+			onTimeout();
+			return;
+		}
+
+		const id = setTimeout(() => {
+			setTime(time - 1);
+		}, 1000);
+		return () => clearTimeout(id);
+	}, [time]);
+
 	return (
 		<div>
-			<div>{time}</div>
-			{!running && <button onClick={startTimer}>Start</button>}
+			{running && <div>{`${parseMin(time)}:${parseSec(time)}`}</div>}
 		</div>
 	);
 }
