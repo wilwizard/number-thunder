@@ -44,7 +44,7 @@ export default function GuessInput({onGuess}) {
    
     return (
         <div className="center">
-            <input className="center input-display" value={inputValue} readOnly={true}/>
+            <div className="center input-display">{inputValue}</div>
             <NumberPad onBackspacePress={triggerBackspace} onDigitPress={triggerDigit} submitGuess={submitGuess}/>
         </div>
     );
