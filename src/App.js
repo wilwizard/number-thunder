@@ -8,6 +8,7 @@ import GuessInput from './components/GuessInput';
 import WordDisplay from "./components/WordDisplay";
 import voiceBox from "./utils/speak";
 import StartButton from './components/StartButton';
+import Summary from "./components/Summary";
 
 import writtenNumber from "written-number";
 
@@ -22,6 +23,7 @@ function App() {
   const [currentNumber, setCurrentNumber] = useState();
   const [score, setScore] = useState();
   const [playing, setPlaying] = useState(false);
+  const [finished, setFinished] = useState(false);
   
   const generateNumber =  () => {
     const magnitude = Math.ceil(MAX_MAG * Math.random());
@@ -40,12 +42,14 @@ function App() {
 
   const startGame = () => {
     setPlaying(true);
+    setFinished(false);
     setScore(0);
     generateNumber();
   }
 
   const endGame = () => {
     setPlaying(false);
+    setFinished(true);
     setCurrentNumber();
     setCurrentWord();
   }
@@ -65,21 +69,22 @@ function App() {
     <div className="App">
       <Header title="Number Thunder"/>
       
-      { playing ? 
-         <div>
-          <div className="row">
-            <Scoreboard score={score}/>
-            <Timer trigger={playing} onTimeout={endGame}/>
-          </div>
-          <div className="row">
-            <WordDisplay word={currentWord}/>
-          </div>
-          <div className="row">
-            <GuessInput onGuess={makeGuess}/>
-          </div>
-        </div> :
-        <StartButton onClick={startGame}/>
+      { playing &&
+        <div>
+        <div className="row">
+          <Scoreboard score={score}/>
+          <Timer trigger={playing} onTimeout={endGame}/>
+        </div>
+        <div className="row">
+          <WordDisplay word={currentWord}/>
+        </div>
+        <div className="row">
+          <GuessInput onGuess={makeGuess}/>
+        </div>
+      </div>
     }
+    {finished && <Summary score={score}/>}
+    {!playing && <StartButton onClick={startGame}/>}
     </div>
   );
 }
