@@ -4,9 +4,10 @@ import NumberPad from '../components/NumberPad';
 
 import '../styles/GuessInput.css';
 
-export default function GuessInput({onGuess}) {
+export default function GuessInput({onGuess, correctAnswer}) {
 
     let [inputValue, setInputValue] = useState('');
+    let [displayCorrectAnswer, setDisplayCorrectAnswer] = useState(false);
 
     const checkKeyPress = event => {
         if(event.key.match(/[0-9]/)) {
@@ -37,6 +38,13 @@ export default function GuessInput({onGuess}) {
         }    
     }, [inputValue]);
 
+    useEffect(() => {
+        setDisplayCorrectAnswer(true);
+        setTimeout(() => {
+            setDisplayCorrectAnswer(false);
+        }, 1000);
+    }, [correctAnswer]);
+
     const submitGuess = () => {
         setInputValue('');
         onGuess(inputValue)
@@ -44,7 +52,8 @@ export default function GuessInput({onGuess}) {
    
     return (
         <div className="center">
-            <div className="center input-display">{inputValue}</div>
+            <div className="correct-answer">{displayCorrectAnswer && correctAnswer}</div>
+            <div className="input-display">{inputValue}</div>
             <NumberPad onBackspacePress={triggerBackspace} onDigitPress={triggerDigit} submitGuess={submitGuess}/>
         </div>
     );

@@ -1,6 +1,6 @@
 .word {
     text-align: center;
-    margin: 15px auto;
+    margin: 15px auto 0;
     font-size: 30px;
-    height: 90px;
+    height: 70px;
 }

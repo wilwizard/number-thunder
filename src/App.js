@@ -21,9 +21,11 @@ const MAX_SIG_FIGS = 3;
 function App() {
   const [currentWord, setCurrentWord] = useState();
   const [currentNumber, setCurrentNumber] = useState();
+  const [correctAnswer, setCorrectAnswer] = useState();
   const [score, setScore] = useState();
   const [playing, setPlaying] = useState(false);
   const [finished, setFinished] = useState(false);
+
   
   const generateNumber =  () => {
     const magnitude = Math.ceil(MAX_MAG * Math.random());
@@ -57,9 +59,10 @@ function App() {
   const makeGuess = (guess) => {
     if (guess == currentNumber) {
       setScore(score + 1);
-      voiceBox.speak("Correcto");  
+      new Audio("number-thunder/correct.mp3").play();
     } else {
-      voiceBox.speak("Incorrecto");  
+      new Audio("number-thunder/error.wav").play();
+      setCorrectAnswer(currentNumber);
     }
     generateNumber();
 
@@ -79,7 +82,7 @@ function App() {
           <WordDisplay word={currentWord}/>
         </div>
         <div className="row">
-          <GuessInput onGuess={makeGuess}/>
+          <GuessInput correctAnswer={correctAnswer} onGuess={makeGuess}/>
         </div>
       </div>
     }
