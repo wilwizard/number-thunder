@@ -41,7 +41,7 @@ function Timer({ onTimeout = () => {}, trigger}) {
 		}
 
 		const id = setTimeout(() => {
-			// setTime(time - 1);
+			setTime(time - 1);
 		}, 1000);
 		return () => clearTimeout(id);
 	}, [time]);
