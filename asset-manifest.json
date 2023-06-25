@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/number-thunder/static/css/main.bbd0e159.css",
-    "main.js": "/number-thunder/static/js/main.53d084b4.js",
+    "main.js": "/number-thunder/static/js/main.d5fc74c0.js",
     "static/js/787.05cba289.chunk.js": "/number-thunder/static/js/787.05cba289.chunk.js",
     "index.html": "/number-thunder/index.html",
     "main.bbd0e159.css.map": "/number-thunder/static/css/main.bbd0e159.css.map",
-    "main.53d084b4.js.map": "/number-thunder/static/js/main.53d084b4.js.map",
+    "main.d5fc74c0.js.map": "/number-thunder/static/js/main.d5fc74c0.js.map",
     "787.05cba289.chunk.js.map": "/number-thunder/static/js/787.05cba289.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bbd0e159.css",
-    "static/js/main.53d084b4.js"
+    "static/js/main.d5fc74c0.js"
   ]
 }
