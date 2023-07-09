@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.bbd0e159.css",
-    "main.js": "/static/js/main.36744ab2.js",
-    "static/js/787.05cba289.chunk.js": "/static/js/787.05cba289.chunk.js",
-    "index.html": "/index.html",
-    "main.bbd0e159.css.map": "/static/css/main.bbd0e159.css.map",
-    "main.36744ab2.js.map": "/static/js/main.36744ab2.js.map",
-    "787.05cba289.chunk.js.map": "/static/js/787.05cba289.chunk.js.map"
+    "main.css": "/www.numberthunder.online/static/css/main.bbd0e159.css",
+    "main.js": "/www.numberthunder.online/static/js/main.84335347.js",
+    "static/js/787.05cba289.chunk.js": "/www.numberthunder.online/static/js/787.05cba289.chunk.js",
+    "index.html": "/www.numberthunder.online/index.html",
+    "main.bbd0e159.css.map": "/www.numberthunder.online/static/css/main.bbd0e159.css.map",
+    "main.84335347.js.map": "/www.numberthunder.online/static/js/main.84335347.js.map",
+    "787.05cba289.chunk.js.map": "/www.numberthunder.online/static/js/787.05cba289.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bbd0e159.css",
-    "static/js/main.36744ab2.js"
+    "static/js/main.84335347.js"
   ]
 }
