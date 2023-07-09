@@ -59,9 +59,9 @@ function App() {
   const makeGuess = (guess) => {
     if (guess == currentNumber) {
       setScore(score + 1);
-      new Audio("/number-thunder/correct.mp3").play();
+      new Audio("/correct.mp3").play();
     } else {
-      new Audio("/number-thunder/error.wav").play();
+      new Audio("/error.wav").play();
       setCorrectAnswer(currentNumber);
     }
     generateNumber();
