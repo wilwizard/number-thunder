@@ -1,7 +1,27 @@
-/*global responsiveVoice*/
+const PITCH = 1;
+const RATE = 1;
+
 class VoiceBox {    
+    constructor() {
+        this.voices = [];
+        speechSynthesis.addEventListener('voiceschanged', this.populateVoices.bind(this));
+    }
+
+    populateVoices() {
+        this.voices = speechSynthesis.getVoices();
+    }
+    
     speak(word) {
-        responsiveVoice.speak(word, "Spanish Latin American Female");
+        let voices = this.voices.filter(voice => {
+            return voice.lang === 'es-MX';
+        });
+
+        let msg = new SpeechSynthesisUtterance(word);
+        msg.voice = voices[0];
+        msg.pitch = PITCH;
+        msg.rate = RATE;
+
+        window.speechSynthesis.speak(msg); 
     }
 }
 
