@@ -14,7 +14,7 @@ import writtenNumber from "written-number";
 
 writtenNumber.defaults.lang = 'es';
 
-const MAX_MAG = 4;
+const MAX_MAG = 5;
 const MAX_SIG_FIGS = 3;
 
 
