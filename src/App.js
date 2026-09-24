@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import './App.css';
 import Header from "./components/Header";
@@ -6,16 +6,11 @@ import Timer from './components/Timer';
 import Scoreboard from './components/Scoreboard'
 import GuessInput from './components/GuessInput';
 import WordDisplay from "./components/WordDisplay";
-import voiceBox from "./utils/speak";
+import voiceBox from "./utils/voicebox";
+import { toWords } from "./utils/spanishNumber";
+import { randomNumber } from "./utils/randomNumber";
 import StartButton from './components/StartButton';
 import Summary from "./components/Summary";
-
-import writtenNumber from "written-number";
-
-writtenNumber.defaults.lang = 'es';
-
-const MAX_MAG = 5;
-const MAX_SIG_FIGS = 3;
 
 
 function App() {
@@ -26,27 +21,34 @@ function App() {
   const [playing, setPlaying] = useState(false);
   const [finished, setFinished] = useState(false);
 
-  
-  const generateNumber =  () => {
-    const magnitude = Math.ceil(MAX_MAG * Math.random());
-    const sigFigs = Math.ceil(MAX_SIG_FIGS * Math.random());
-    let number = Math.ceil(10**magnitude * Math.random());
+  // The next number is always picked one step ahead, so its audio can load
+  // while the player is still answering the current one.
+  const nextNumber = useRef();
 
-    if (magnitude > sigFigs) {
-      const modulus = 10 ** (magnitude - sigFigs);
-      number = number - (number % modulus);
-    }
+  const queueNextNumber = () => {
+    nextNumber.current = randomNumber();
+    voiceBox.preload(nextNumber.current);
+  }
 
+  // Preload the sound effects and first number while the start screen is showing.
+  useEffect(() => {
+    voiceBox.preloadSounds();
+    queueNextNumber();
+  }, []);
+
+  const nextRound = () => {
+    const number = nextNumber.current;
     setCurrentNumber(number);
-    setCurrentWord(writtenNumber(number))
-    voiceBox.speak(writtenNumber(number));
-}
+    setCurrentWord(toWords(number));
+    voiceBox.speak(number);
+    queueNextNumber();
+  }
 
   const startGame = () => {
     setPlaying(true);
     setFinished(false);
     setScore(0);
-    generateNumber();
+    nextRound();
   }
 
   const endGame = () => {
@@ -57,15 +59,15 @@ function App() {
   }
 
   const makeGuess = (guess) => {
-    if (guess == currentNumber) {
+    // guess comes from the input as a string
+    if (Number(guess) === currentNumber) {
       setScore(score + 1);
-      new Audio("/correct.mp3").play();
+      voiceBox.playSound("correct");
     } else {
-      new Audio("/error.wav").play();
+      voiceBox.playSound("error");
       setCorrectAnswer(currentNumber);
     }
-    generateNumber();
-
+    nextRound();
   }
 
   return (
