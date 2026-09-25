@@ -1,5 +1,5 @@
 // Generates one mp3 per (period, scale) into public/audio using Google Cloud
-// Text-to-Speech, e.g. public/audio/thousands/21.mp3 -> "veintiún mil".
+// Text-to-Speech, e.g. public/audio/thousands/0/21.mp3 -> "veintiún mil".
 // Google's audio is fetched uncompressed, then ffmpeg trims the silence Google pads
 // each clip with (so clips can be played back to back) and encodes it to mp3.
 // Requires ffmpeg on the PATH.
@@ -22,7 +22,7 @@ import { mkdir, readFile, rename, access } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { SCALES, periodWords } from '../src/utils/spanishNumber.js';
+import { SCALES, clipPath, periodWords } from '../src/utils/spanishNumber.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const AUDIO_DIR = join(ROOT, 'public', 'audio');
@@ -69,7 +69,7 @@ function allClips() {
     for (const scale of SCALES) {
         for (let value = 1; value <= 999; value++) {
             clips.push({
-                file: join(AUDIO_DIR, scale, `${value}.mp3`),
+                file: join(ROOT, 'public', clipPath(scale, value)),
                 text: periodWords(value, scale),
             });
         }
