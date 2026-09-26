@@ -1,15 +1,25 @@
 .digits {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    width: 310px;
-    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    max-width: 320px;
+    margin: 0 auto;
 }
 
-.enter-button {
-    order: 3;
+.enter {
+    grid-row: span 3;
 }
 
-.end {
-    order: 2;
+/* Enter is already filled, so pressing it darkens it instead.
+   Three classes so this beats the grey .number:active rule in NumberButton.css. */
+.number.enter:active,
+.number.enter.pressed {
+    background-color: var(--pico-primary-background);
+    border-color: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+    filter: brightness(0.7);
+}
+
+.zero {
+    grid-column: span 2;
 }

@@ -1,18 +1,11 @@
 .number {
-    padding-top: 40px;
-    border: 1px black solid;
-    width: 100px;
-    height: 60px;
-    text-align: center;
+    font-size: 24px;
 }
 
-button.number {
-    padding-top: 10px;
-    height: 100px;
+/* :active is a mouse or touch press; .pressed is set while the matching keyboard key is held. */
+.number:active,
+.number.pressed {
+    background-color: var(--pico-secondary-background);
+    border-color: var(--pico-secondary-background);
+    color: var(--pico-secondary-inverse);
 }
-
-.number:active {
-    background-color: #aaa;
-}
-
-

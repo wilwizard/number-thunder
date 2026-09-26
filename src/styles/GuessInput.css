@@ -1,11 +1,14 @@
+/* Uses Pico's form colours so the box matches the keypad in light and dark mode. */
 .input-display {
-    font-size: 27px;
+    font-size: 28px;
     text-align: center;
-    width: 95%;
-    height: 35px;
-    border: black 1px solid;
-    margin-bottom: 10px;
-    padding: 5px;
+    max-width: 320px;
+    height: 56px;
+    margin: 0 auto 8px;
+    padding: 6px;
+    border: 1px solid var(--pico-form-element-border-color);
+    border-radius: var(--pico-border-radius);
+    background-color: var(--pico-form-element-background-color);
 }
 
 .correct-answer {

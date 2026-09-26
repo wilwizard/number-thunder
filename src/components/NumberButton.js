@@ -1,12 +1,7 @@
 import '../styles/NumberButton.css';
 
-export default function NumberButton({number, onPress}) {
-    
-    let className = "number"
-    if (number === 0) {
-        className += ' end';
-    }
+export default function NumberButton({number, onPress, pressed}) {
     return (
-        <div onClick={() => onPress(number)} className={className}>{number}</div>
+        <button onClick={() => onPress(number)} className={`number secondary outline ${pressed ? "pressed" : ""}`}>{number}</button>
     );
 }
