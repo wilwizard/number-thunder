@@ -24,16 +24,18 @@ function Timer({ onTimeout = () => {}, trigger}) {
 		setRunning(true);
 	}
 
-	const endTimer = () => {
-		setTime();
-		setRunning(false);
-	}
+	
 
 	useEffect(() => {
 		startTimer();
 	}, [trigger]);
 
 	useEffect(() => {
+		const endTimer = () => {
+			setTime();
+			setRunning(false);
+		}
+
 		if (time === 0) {
 			endTimer();
 			onTimeout();
@@ -44,6 +46,9 @@ function Timer({ onTimeout = () => {}, trigger}) {
 			setTime(time - 1);
 		}, 1000);
 		return () => clearTimeout(id);
+	// onTimeout is left out: it's a new function on every parent render, which would
+	// restart the one-second tick each time. The render where time hits 0 has the current one.
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [time]);
 
 	return (
