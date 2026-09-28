@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.ee910305.css",
-    "main.js": "/static/js/main.57f20383.js",
-    "static/js/453.72ae57d0.chunk.js": "/static/js/453.72ae57d0.chunk.js",
-    "index.html": "/index.html",
-    "main.ee910305.css.map": "/static/css/main.ee910305.css.map",
-    "main.57f20383.js.map": "/static/js/main.57f20383.js.map",
-    "453.72ae57d0.chunk.js.map": "/static/js/453.72ae57d0.chunk.js.map"
+    "main.css": "/number-thunder/static/css/main.ee910305.css",
+    "main.js": "/number-thunder/static/js/main.34868ad3.js",
+    "static/js/453.72ae57d0.chunk.js": "/number-thunder/static/js/453.72ae57d0.chunk.js",
+    "index.html": "/number-thunder/index.html",
+    "main.ee910305.css.map": "/number-thunder/static/css/main.ee910305.css.map",
+    "main.34868ad3.js.map": "/number-thunder/static/js/main.34868ad3.js.map",
+    "453.72ae57d0.chunk.js.map": "/number-thunder/static/js/453.72ae57d0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ee910305.css",
-    "static/js/main.57f20383.js"
+    "static/js/main.34868ad3.js"
   ]
 }
