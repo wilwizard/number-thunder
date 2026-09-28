@@ -1,7 +1,7 @@
 {
   "name": "numbers",
   "version": "0.1.0",
-  "homepage": "https://www.numberthunder.online",
+  "homepage": "https://wilwizard.github.io/number-thunder",
   "private": true,
   "dependencies": {
     "@picocss/pico": "^2.1.1",
