@@ -9,6 +9,7 @@ import WordDisplay from "./components/WordDisplay";
 import voiceBox from "./utils/voicebox";
 import { toWords } from "./utils/spanishNumber";
 import { randomNumber } from "./utils/randomNumber";
+import { decompose } from "./utils/decompose";
 import StartButton from './components/StartButton';
 import Summary from "./components/Summary";
 
@@ -24,6 +25,10 @@ function App() {
   // The next number is always picked one step ahead, so its audio can load
   // while the player is still answering the current one.
   const nextNumber = useRef();
+
+  // Wrong answers per token this game: { siete: 3, enta: 2, ... }.
+  // A ref rather than state, since nothing on screen shows it yet.
+  const tokenErrors = useRef({});
 
   const queueNextNumber = () => {
     nextNumber.current = randomNumber();
@@ -48,6 +53,7 @@ function App() {
     setPlaying(true);
     setFinished(false);
     setScore(0);
+    tokenErrors.current = {};
     nextRound();
   }
 
@@ -66,6 +72,10 @@ function App() {
     } else {
       voiceBox.playSound("error");
       setCorrectAnswer(currentNumber);
+      for (const token of decompose(currentNumber)) {
+        tokenErrors.current[token] = (tokenErrors.current[token] || 0) + 1;
+      }
+      console.log(tokenErrors.current);
     }
     nextRound();
   }
