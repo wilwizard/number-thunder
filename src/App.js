@@ -10,6 +10,7 @@ import voiceBox from "./utils/voicebox";
 import { toWords } from "./utils/spanishNumber";
 import { randomNumber } from "./utils/randomNumber";
 import { decompose } from "./utils/decompose";
+import { targetedNumber } from "./utils/targetedNumber";
 import StartButton from './components/StartButton';
 import Summary from "./components/Summary";
 
@@ -31,7 +32,19 @@ function App() {
   const tokenErrors = useRef({});
 
   const queueNextNumber = () => {
-    nextNumber.current = randomNumber();
+    let number = null;
+
+    // Once there are misses, half the numbers target a missed token.
+    // targetedNumber can return null, and then we use a random number instead.
+    const hasErrors = Object.keys(tokenErrors.current).length > 0;
+    if (hasErrors && Math.random() < 0.5) {
+      number = targetedNumber(tokenErrors.current);
+    }
+    if (number === null) {
+      number = randomNumber();
+    }
+
+    nextNumber.current = number;
     voiceBox.preload(nextNumber.current);
   }
 
